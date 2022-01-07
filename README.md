@@ -24,7 +24,7 @@ File list:
 # How to use this package (with sample code):
 
 1. Download any sample dataset from the /data folder
-2. <pre>
+2. <code>
 
 # import the library
 from pyDRMetrics.pyDRMetrics import *
@@ -51,3 +51,5 @@ Xr = pca.inverse_transform(Z)
 # Create DRMetrics object. This object contains all DR metrics and main API functions
 drm = DRMetrics(X, Z, Xr)
 drm.report() # this will generate a detailed report. You can also access each metric, e.g., drm.QNN, drm.LCMC, etc.
+
+</code?
