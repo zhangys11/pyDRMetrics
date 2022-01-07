@@ -52,4 +52,4 @@ Xr = pca.inverse_transform(Z)
 drm = DRMetrics(X, Z, Xr)
 drm.report() # this will generate a detailed report. You can also access each metric, e.g., drm.QNN, drm.LCMC, etc.
 
-</code?
+</code>
