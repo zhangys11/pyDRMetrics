@@ -16,3 +16,38 @@ File list:
   data/digits.csv - 40 samples from the MNIST handwritten digits dataset. URL: http://yann.lecun.com/exdb/mnist/  
   data/raman.csv - Another dataset containing the Raman spectra of 46 infant formula milk powder samples. DOI: 10.1016/j.talanta.2019.120681   
   notebook.pdf - the code and result for the case study
+
+# Installation
+
+`pip install pyDRMetrics`
+
+# How to use this package (with sample code):
+
+1. Download any sample dataset from the /data folder
+2. <pre>
+
+# import the library
+from pyDRMetrics.pyDRMetrics import *
+
+# load the dataset
+import pandas as pd
+data = pd.read_csv('raman.csv')
+cols = data.shape[1]
+# convert from pandas dataframe to numpy matrices
+X = np.array(data.iloc[:,1:-1]) # skip first and last cols
+y = np.array(data.iloc[:,-1])
+X_names = list(data.columns.values[1:-1]) # -1 for removing the last column
+labels = list(set(y))
+
+# perform DR, e.g., PCA
+from sklearn.decomposition import PCA
+import matplotlib.ticker as mticker
+K = 2
+pca = PCA(n_components = K) # keep the first K components
+pca.fit(X)
+Z = pca.transform(X)
+Xr = pca.inverse_transform(Z)
+
+# Create DRMetrics object. This object contains all DR metrics and main API functions
+drm = DRMetrics(X, Z, Xr)
+drm.report() # this will generate a detailed report. You can also access each metric, e.g., drm.QNN, drm.LCMC, etc.
