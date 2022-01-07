@@ -15,7 +15,7 @@ File list:
   data/cancer.csv - A subset of ovarian-cancer-nci-pbsii-data containing 10 normal and 10 cancer samples. DOI: 10.1016/S0140-6736(02)07746-2  
   data/digits.csv - 40 samples from the MNIST handwritten digits dataset. URL: http://yann.lecun.com/exdb/mnist/  
   data/raman.csv - Another dataset containing the Raman spectra of 46 infant formula milk powder samples. DOI: 10.1016/j.talanta.2019.120681   
-  notebook.pdf - the code and result for the case study
+  doc.pdf - the code and result for the case study
 
 # Installation
 
@@ -54,3 +54,5 @@ drm = DRMetrics(X, Z, Xr)
 drm.report() # this will generate a detailed report. You can also access each metric, e.g., drm.QNN, drm.LCMC, etc.
 
 </pre>
+
+You may also check doc.pdf for more sample codes.
