@@ -4,6 +4,7 @@ from .calculate_recon_error import *
 from sklearn.random_projection import johnson_lindenstrauss_min_dim
 import pandas as pd
 from scipy.spatial import distance_matrix
+from sklearn.metrics import pairwise_distances
 from scipy.stats import pearsonr, spearmanr
 from .visualize_matrix import *
 from .visualize_sample_reconstruction import *
@@ -38,10 +39,10 @@ class DRMetrics:
             
         # Construct the distance matrix
         df = pd.DataFrame(X, index=None)
-        self.D = pd.DataFrame(distance_matrix(df.values, df.values)).values        
+        self.D = pd.DataFrame(pairwise_distances(df.values)).values        
 
         dfz = pd.DataFrame(Z, index=None)
-        self.Dz = pd.DataFrame(distance_matrix(dfz.values, dfz.values)).values
+        self.Dz = pd.DataFrame(pairwise_distances(dfz.values)).values
         
         # Residual Variance of the two distance matrices 
         self.Vr = 1 - (pearsonr(self.D.flatten(), self.Dz.flatten())[0])**2 # Pearson's r version
