@@ -7,17 +7,7 @@ D - distance matrix
 '''
 def ranking_matrix(D):    
     D = np.array(D)    
-    R = np.zeros(D.shape)
-    m = len(R)
-    
-    for i in range(m):
-        for j in range(m):
-            Rij = 0
-            for k in range(m):
-                if (D[i,k] < D[i,j]) or (math.isclose(D[i,k], D[i,j]) and k < j ):
-                    Rij += 1
-            R[i,j] = Rij
-            
+    R = [np.argsort(np.argsort(row)) for row in D]
     return R
 
 '''
