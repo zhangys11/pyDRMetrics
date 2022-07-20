@@ -2,30 +2,55 @@ import math
 import numpy as np
 from tqdm import tqdm
 
-'''
-D - distance matrix
-'''
-def ranking_matrix(D):    
-    D = np.array(D)    
-    # R = np.zeros(D.shape)
-    # m = len(R)
-    
-    # for i in range(m):
-    #     for j in range(m):
-    #         Rij = 0
-    #         for k in range(m):
-    #             if (D[i,k] < D[i,j]) or (math.isclose(D[i,k], D[i,j]) and k < j ):
-    #                 Rij += 1
-    #         R[i,j] = Rij
-            
-    R = [np.argsort(np.argsort(row)) for row in D]
-    return R
 
-'''
-R1, R2 - two ranking matrices
-'''
+def ranking_matrix(D, solver='fast'):    
+    '''
+    Get the ranking matrix from distance matrix
+
+    Parameters
+    ----------
+    D - distance matrix
+    solver - default 'fast'. 
+
+    Return
+    ------
+    R - ranking matrix
+    '''
+
+    D = np.array(D)    
+
+    if solver == 'fast':
+        # Computing ranking_matrix using np.argsort twice on every row. By Nilrad
+        R = [np.argsort(np.argsort(row)) for row in D] 
+    else:    
+        R = np.zeros(D.shape)
+        m = len(R)
+        
+        for i in range(m):
+            for j in range(m):
+                Rij = 0
+                for k in range(m):
+                    if (D[i,k] < D[i,j]) or (math.isclose(D[i,k], D[i,j]) and k < j ):
+                        Rij += 1
+                R[i,j] = Rij
+
+    return np.array(R, dtype = 'uint')
+
+
 def coranking_matrix(R1, R2):
-    
+    '''
+    Get co-ranking matrix
+
+    Parameters
+    ----------
+    R1, R2 - two ranking matrices as input
+
+    Return
+    ------
+    Q - coranking matrix
+    '''
+
+
     R1 = np.array(R1)
     R2 = np.array(R2)    
     assert R1.shape == R2.shape    
