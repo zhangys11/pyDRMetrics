@@ -16,3 +16,12 @@ def calculate_recon_error(X, Xr):
     ms = recon_MSE(X, np.zeros(X.shape)) # mean square of original data matrix
 
     return mse, ms, mse/ms
+
+def recon_rMSE(X, Xr):
+    return recon_MSE(X, Xr) / recon_MSE(X, np.zeros(X.shape))
+
+def SNR(X, Xr):
+    '''
+    SNR (signal-Noise Ratio in dB). dB = 10*log10
+    '''
+    return 10 * np.log10(1.0 / recon_rMSE(X, Xr) )
