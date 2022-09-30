@@ -17,7 +17,9 @@ File list:
 
 # Installation
 
-`pip install pyDRMetrics`
+1. `pip install pyDRMetrics`
+2. Install the R runtime. Then install the ECoL package to the R environment. 
+   <img src='install_ECoL.png'>
 
 # How to use this package (with sample code):
 

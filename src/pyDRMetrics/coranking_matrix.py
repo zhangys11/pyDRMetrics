@@ -36,7 +36,6 @@ def ranking_matrix(D, solver='fast'):
 
     return np.array(R, dtype = 'uint')
 
-
 def coranking_matrix(R1, R2):
     '''
     Get co-ranking matrix
