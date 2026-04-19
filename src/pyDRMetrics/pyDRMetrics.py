@@ -127,7 +127,7 @@ class DRMetrics:
             Xvq = kmeans.predict(X)
             H = kmeans.cluster_centers_            
             ohe = OneHotEncoder()
-            Z = ohe.fit_transform(Xvq.reshape(-1, 1)).A
+            Z = ohe.fit_transform(Xvq.reshape(-1, 1)).toarray() # .A is obsolete.
             Xr = Z @ H
         elif (dr == 'MDS'):
             mds = MDS(n_components = K) # keep the first K components
